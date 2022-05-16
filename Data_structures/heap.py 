@@ -11,6 +11,38 @@ class MaxHeap:
             return self.heap[0]
         return None
 
+    def __maxHeapify(self, data):
+        self.heap.append(data)
+        n = len(self.heap)
+        print("-->", n, self.heap)
+        
+        while n > 0:
+            
+           parent = (n - 1) / 2 
+           print(parent, n)
+           if self.heap[parent] > self.heap[n-1]:
+              self.heap[parent], self.heap[n-1] = self.heap[parent], self.heap[n-1]
+           n = parent    
+        return    
+
+    def buildHeap(self, arr):
+        #self.heap = arr
+        for i in range(len(arr)-1, -1, -1):
+            self.__maxHeapify(arr[i])
+
+
+
+h = MaxHeap()
+arr = [1,2,3,1,1,2,9,11,22,14,15,15,14,24]
+h.buildHeap(arr)
+print(h.heap)
+
+
+
+
+
+'''
+
     def removeMax(self):
         if len(self.heap) > 1:
             max = self.heap[0]
@@ -25,7 +57,8 @@ class MaxHeap:
         else:
             return None
 
-    def __percolateUp(self, index):
+
+   def __percolateUp(self, index):
         parent = (index-1)//2
         if index <= 0:
             return
@@ -49,20 +82,4 @@ class MaxHeap:
             self.heap[index] = tmp
             self.__maxHeapify(largest)
 
-    def buildHeap(self, arr):
-        self.heap = arr
-        for i in range(len(arr)-1, -1, -1):
-            self.__maxHeapify(i)
-
-
-
-
-
-
-
-h = MaxHeap()
-arr = [1,2,3,1,1,2,9,11,22,14,15,15,14,24]
-h.buildHeap(arr)
-print(h.heap)
-
-
+'''
